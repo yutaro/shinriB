@@ -156,24 +156,45 @@ function stateUpdate(){
   }
 }
 
+let oneFirst = (Math.random() > 0.5);
+let commingCount = 0;
 function mouseClicked(){
-  if(state == 0 && count > 20){
-    if(areas[areas.length-1].mouseover(mouseX, mouseY))changeState(1);
-  }
-  if(state == 2 || state == 4){
-    if(playingSound.position > 6000 / playingRate){
-      if(really == false){really = true;}
-      else{
-        if(areas[areas.length-1].mouseover(mouseX, mouseY) && reallyTime > 90){
-          changeState(state+1);really=false;
+  switch(state){
+    case 0:
+      if(count > 20 && areas[areas.length-1].mouseover(mouseX, mouseY)){
+        if(oneFirst){
+          changeState(1);
+        }else{
+          changeState(3);
         }
       }
-      
-    }
-  }
-  if(state == 5){
-    
-    if(areas[areas.length-1].mouseover(mouseX, mouseY))playingSound.paused = !playingSound.paused;
+      break;
+
+    case 2:
+    case 4:
+      if(playingSound.position > 6000 / playingRate){
+        if(really == false){really = true;}
+        else{
+          if(areas[areas.length-1].mouseover(mouseX, mouseY) && reallyTime > 90){
+            if(commingCount >= 1){
+              changeState(5);
+              really=false;
+            }else if(oneFirst){
+              changeState(3);
+              really=false;
+            }else{
+              changeState(1);
+              really=false;
+            }
+            commingCount++;
+          }
+        }
+      }
+      break;
+
+    case 5:
+      if(areas[areas.length-1].mouseover(mouseX, mouseY))playingSound.paused = !playingSound.paused;
+      break;
   }
 }
 
