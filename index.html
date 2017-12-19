@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <link rel="stylesheet" href="css/base.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">  
+  <style>
+    [v-cloak] {
+      visibility : hidden;
+    }
+
+    #app {
+      width : 1100px;
+      margin-top : 30px;
+      padding : 20px 20px;
+      background-color : rgb(250, 250, 250);
+    }
+    
+    #display{
+      display : inline-block;
+    }
+  </style>
+  <!-- -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
+
+</head>
+<body>
+  <div id="app" v-cloak class="container">
+    <div v-if="oppState == 0" id="exp">
+      <h1>実験趣旨説明</h1>
+      <p>こんなかんじのじっけんなんです</p>
+      <p>こんなかんじのじっけんなんです</p>
+      <p>こんなかんじのじっけんなんです</p>
+      <p>こんなかんじのじっけんなんです</p>
+      <p>こんなかんじのじっけんなんです</p>
+      <p>こんなかんじのじっけんなんです</p>
+      <p>こんなかんじのじっけんなんです</p>
+      <p>こんなかんじのじっけんなんです</p>
+      <p>こんなかんじのじっけんなんです</p>
+      <p>こんなかんじのじっけんなんです</p>
+      <p>こんなかんじのじっけんなんです</p>
+      <p>こんなかんじのじっけんなんです</p>
+      <p>こんなかんじのじっけんなんです</p>
+      <p>こんなかんじのじっけんなんです</p>
+      <p>こんなかんじのじっけんなんです</p>
+      <p>こんなかんじのじっけんなんです</p>
+      <a class="waves-effect waves-light btn" @click="oppState++">次へ</a>
+    </div>
+    <div v-else-if="oppState == 1"id="unquate">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdE2eBPvbIpBKR_Dsr3gqpbAEvA86-etsT2fRQ9uKBGanBqrw/viewform?embedded=true" width="1000" height="700" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>
+      <hr>
+      <a  class="waves-effect waves-light btn" @click="oppState++">実験を始める</a>
+    </div>
+    <div v-show="oppState == 2">
+        <div id="display"></div>
+        <div v-if="state == 2">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdnr9y9PSuGEseYUc2QMsoMJPJBXYpz_4YQ9DhzmeUszZfNvg/viewform?embedded=true" width="1000" height="700" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>
+        </div>
+
+        <div v-if="state == 4">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf2vUQDtRknISm9OsBuExF4TmY6xrcNyYbb2MJufLtx0Gftqw/viewform?embedded=true" width="1000" height="700" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>
+        </div>
+
+    </div>
+  </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/p5.js"></script>
+<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://unpkg.com/vue"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script src="script.js"></script>
+
+</html>
