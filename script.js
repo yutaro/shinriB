@@ -3,7 +3,8 @@ let vm = new Vue({
   data : {
     oppState : 0,
     state : 0,
-    really : true
+    really : true,
+    soundDampable : true
   }
 });
 
@@ -80,7 +81,7 @@ function stateWakeup(){
   case 0://準備
     count = 0;
   case 1://準備
-    soundDampable = false;
+    soundDampable = oneFirst;
 
     break;
 
@@ -106,6 +107,7 @@ function stateWakeup(){
 
   vm.state = state;
   vm.really = really;
+  vm.soundDampable = soundDampable;
 }
 
 var really = false;
@@ -156,18 +158,10 @@ function stateUpdate(){
   }
 }
 
-let oneFirst = (Math.random() > 0.5);
-let commingCount = 0;
 function mouseClicked(){
   switch(state){
     case 0:
-      if(count > 20 && areas[areas.length-1].mouseover(mouseX, mouseY)){
-        if(oneFirst){
-          changeState(1);
-        }else{
-          changeState(3);
-        }
-      }
+      if(count > 20 && areas[areas.length-1].mouseover(mouseX, mouseY))changeState(1);
       break;
 
     case 2:
@@ -176,17 +170,7 @@ function mouseClicked(){
         if(really == false){really = true;}
         else{
           if(areas[areas.length-1].mouseover(mouseX, mouseY) && reallyTime > 90){
-            if(commingCount >= 1){
-              changeState(5);
-              really=false;
-            }else if(oneFirst){
-              changeState(3);
-              really=false;
-            }else{
-              changeState(1);
-              really=false;
-            }
-            commingCount++;
+            changeState(state+1);really=false;
           }
         }
       }
@@ -206,6 +190,8 @@ function setup() {
   
 }
 
+
+let oneFirst;
 window.onload = function () {
   playingSound = loadSound("sound_100.mp3");
   playingRate = 1;
@@ -215,6 +201,8 @@ window.onload = function () {
   areas.push(new Area(width/4, height/2, width/3, height/2, 1.2, color(200, 230, 180), "sound_70.mp3", 0.7));
   areas.push(new Area(width*3/4, height/2, width/3, height/2, 3, color(130, 120, 170), "sound_45.mp3", 0.45));
   areas.push(new Area(width/2, height/2, width, height, 1, color(250,250,250), "sound_100.mp3", 1));
+
+  oneFirst = (Math.random() > 0.5);
   changeState(0);//init state
 }
 

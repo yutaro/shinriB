@@ -29,7 +29,7 @@
 </head>
 <body>
   <div id="app" v-cloak :class="{ gaming : oppState == 2 , container : true}">
-    {{ state }}
+    {{ state }} : {{ soundDampable }}
     <div v-if="oppState == 0" id="explain">
       <h1>実験趣旨説明</h1>
       <p>こんなかんじのじっけんなんです</p>
@@ -57,12 +57,9 @@
     </div>
     <div v-show="oppState == 2">
         <div id="display"></div>
-        <div v-if="state == 2">
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdnr9y9PSuGEseYUc2QMsoMJPJBXYpz_4YQ9DhzmeUszZfNvg/viewform?embedded=true" width="1000" height="700" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>
-        </div>
-
-        <div v-if="state == 4">
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf2vUQDtRknISm9OsBuExF4TmY6xrcNyYbb2MJufLtx0Gftqw/viewform?embedded=true" width="1000" height="700" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>
+        <div v-if="state == 2 || state == 4">
+            <iframe v-if="soundDampable == false" src="https://docs.google.com/forms/d/e/1FAIpQLSdnr9y9PSuGEseYUc2QMsoMJPJBXYpz_4YQ9DhzmeUszZfNvg/viewform?embedded=true" width="1000" height="700" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>
+            <iframe v-else src="https://docs.google.com/forms/d/e/1FAIpQLSf2vUQDtRknISm9OsBuExF4TmY6xrcNyYbb2MJufLtx0Gftqw/viewform?embedded=true" width="1000" height="700" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます...</iframe>
         </div>
     </div>
   </div>
